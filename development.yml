@@ -111,14 +111,11 @@ services:
       - "traefik.enable=true"
 
       # Backend routes handled by Traefik
-      - "traefik.http.routers.backend.rule=Host(`localhost`) && (PathPrefix(`/api`) || PathPrefix(`/admin`) || PathPrefix(`/static`) || PathPrefix(`/media`))"
+      - "traefik.http.routers.backend.rule=Host(`localhost`) && (PathPrefix(`/api`) || PathPrefix(`/admin`) || PathPrefix(`/static`) || PathPrefix(`/media`) || PathPrefix(`/health`) || PathPrefix(`/csrf`))"
       - "traefik.http.routers.backend.entrypoints=web"
       - "traefik.http.routers.backend.priority=100"
 
       # Middlewares
-      # Remove /api prefix ONLY for local backend
-      - "traefik.http.middlewares.strip-api-prefix.stripprefix.prefixes=/api"
-
       # Security headers
       - "traefik.http.middlewares.backend-security-headers.headers.browserXssFilter=true"
       - "traefik.http.middlewares.backend-security-headers.headers.contentTypeNosniff=true"
@@ -138,7 +135,7 @@ services:
       - "traefik.http.middlewares.backend-retry.retry.initialinterval=100ms"
 
       # Apply middleware chain
-      - "traefik.http.routers.backend.middlewares=strip-api-prefix,backend-compress,backend-security-headers,backend-retry,backend-ratelimit"
+      - "traefik.http.routers.backend.middlewares=backend-compress,backend-security-headers,backend-retry,backend-ratelimit"
 
       # Backend port
       - "traefik.http.services.backend.loadbalancer.server.port=8000"
