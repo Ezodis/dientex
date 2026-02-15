@@ -3,8 +3,8 @@ import "./globals.css";
 import { Toaster } from "@/app/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Dental.AI - Gestión de Consultorio Dental",
-  description: "Sistema completo de gestión para consultorios dentales",
+  title: "Dientex - Gestión de Consultorio Dental",
+  description: "Sistema completo de gestión para consultorios dentales - Dientex",
 };
 
 export default function RootLayout({

@@ -14,7 +14,7 @@ export function MainLayout({ children }: MainLayoutProps) {
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header />
         <main className="flex-1 overflow-y-auto bg-muted/10">
-          <div className="container mx-auto p-6">
+          <div className="container mx-auto p-4 md:p-6">
             {children}
           </div>
         </main>

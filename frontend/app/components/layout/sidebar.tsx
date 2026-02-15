@@ -33,7 +33,7 @@ export function Sidebar() {
   return (
     <div
       className={cn(
-        "relative flex flex-col border-r bg-card transition-all duration-300",
+        "relative hidden md:flex flex-col border-r bg-card transition-all duration-300",
         collapsed ? "w-16" : "w-64"
       )}
     >
@@ -44,7 +44,7 @@ export function Sidebar() {
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">D</span>
             </div>
-            <span className="font-semibold text-lg">Dental.AI</span>
+            <span className="font-semibold text-lg">Dientex</span>
           </div>
         )}
         <Button
@@ -87,7 +87,7 @@ export function Sidebar() {
       {/* Footer */}
       <div className="p-4 border-t">
         <div className={cn("text-xs text-muted-foreground", collapsed && "text-center")}>
-          {!collapsed ? "© 2024 Dental.AI" : "©"}
+          {!collapsed ? "© 2024 Dientex" : "©"}
         </div>
       </div>
     </div>
