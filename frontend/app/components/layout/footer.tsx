@@ -3,7 +3,7 @@ export function Footer() {
     <footer className="border-t py-6 md:py-0">
       <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
         <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-          © 2024 Dental.AI. Sistema de Gestión de Consultorio Dental.
+          © 2024 Dientex. Sistema de Gestión de Consultorio Dental.
         </p>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <a href="#" className="hover:underline">

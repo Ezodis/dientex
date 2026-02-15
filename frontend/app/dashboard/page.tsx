@@ -157,23 +157,25 @@ export default function DashboardPage() {
 
   return (
     <MainLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Dashboard</h1>
+            <p className="text-sm md:text-base text-muted-foreground">
               Resumen de tu clínica dental
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline">
-              <UserPlus className="mr-2 h-4 w-4" />
-              Nuevo Paciente
+            <Button variant="outline" size="sm" className="md:h-10 md:px-4 md:py-2">
+              <UserPlus className="mr-0 md:mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Nuevo Paciente</span>
+              <span className="sm:hidden">Paciente</span>
             </Button>
-            <Button>
-              <CalendarPlus className="mr-2 h-4 w-4" />
-              Nueva Cita
+            <Button size="sm" className="md:h-10 md:px-4 md:py-2">
+              <CalendarPlus className="mr-0 md:mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Nueva Cita</span>
+              <span className="sm:hidden">Cita</span>
             </Button>
           </div>
         </div>

@@ -12,35 +12,35 @@ import { Settings as SettingsIcon, User, Bell, Shield, Palette } from "lucide-re
 export default function SettingsPage() {
   return (
     <MainLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Configuración</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Configuración</h1>
+          <p className="text-sm md:text-base text-muted-foreground">
             Personaliza la aplicación según tus necesidades
           </p>
         </div>
 
         <Tabs defaultValue="general" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="general">
-              <SettingsIcon className="mr-2 h-4 w-4" />
-              General
+          <TabsList className="grid w-full grid-cols-5 h-auto">
+            <TabsTrigger value="general" className="flex-col gap-1 py-2 text-xs md:flex-row md:gap-2 md:text-sm">
+              <SettingsIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">General</span>
             </TabsTrigger>
-            <TabsTrigger value="profile">
-              <User className="mr-2 h-4 w-4" />
-              Perfil
+            <TabsTrigger value="profile" className="flex-col gap-1 py-2 text-xs md:flex-row md:gap-2 md:text-sm">
+              <User className="h-4 w-4" />
+              <span className="hidden sm:inline">Perfil</span>
             </TabsTrigger>
-            <TabsTrigger value="notifications">
-              <Bell className="mr-2 h-4 w-4" />
-              Notificaciones
+            <TabsTrigger value="notifications" className="flex-col gap-1 py-2 text-xs md:flex-row md:gap-2 md:text-sm">
+              <Bell className="h-4 w-4" />
+              <span className="hidden sm:inline">Notif.</span>
             </TabsTrigger>
-            <TabsTrigger value="security">
-              <Shield className="mr-2 h-4 w-4" />
-              Seguridad
+            <TabsTrigger value="security" className="flex-col gap-1 py-2 text-xs md:flex-row md:gap-2 md:text-sm">
+              <Shield className="h-4 w-4" />
+              <span className="hidden sm:inline">Seguridad</span>
             </TabsTrigger>
-            <TabsTrigger value="appearance">
-              <Palette className="mr-2 h-4 w-4" />
-              Apariencia
+            <TabsTrigger value="appearance" className="flex-col gap-1 py-2 text-xs md:flex-row md:gap-2 md:text-sm">
+              <Palette className="h-4 w-4" />
+              <span className="hidden sm:inline">Tema</span>
             </TabsTrigger>
           </TabsList>
 
@@ -55,7 +55,7 @@ export default function SettingsPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="clinic-name">Nombre de la Clínica</Label>
-                  <Input id="clinic-name" placeholder="Dental.AI" />
+                  <Input id="clinic-name" placeholder="Dientex" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="clinic-address">Dirección</Label>
@@ -67,7 +67,7 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="clinic-email">Correo Electrónico</Label>
-                  <Input id="clinic-email" type="email" placeholder="contacto@dentalai.com" />
+                  <Input id="clinic-email" type="email" placeholder="contacto@dientex.com" />
                 </div>
                 <Button>Guardar Cambios</Button>
               </CardContent>
@@ -89,7 +89,7 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Correo Electrónico</Label>
-                  <Input id="email" type="email" placeholder="juan@dentalai.com" />
+                  <Input id="email" type="email" placeholder="juan@dientex.com" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Teléfono</Label>
