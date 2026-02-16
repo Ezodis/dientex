@@ -8,10 +8,9 @@ import { Label } from '@/app/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/components/ui/select';
 import { useToast } from '@/app/hooks/use-toast';
-import { CalendarDays, Clock, User, Phone, Mail, CheckCircle2, ArrowRight } from 'lucide-react';
+import { CalendarDays, Clock, User, CheckCircle2, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import apiClient from '@/app/lib/api';
 import Link from 'next/link';
 
 interface TimeSlot {
