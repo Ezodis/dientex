@@ -181,7 +181,46 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         
         elif request.method == 'POST':
             # Create a public booking
-            serializer = self.get_serializer(data=request.data)
+            # Handle patient data
+            from patients.models import Patient
+            
+            patient_data = request.data.get('patient', {})
+            if not patient_data:
+                return Response(
+                    {'error': 'Datos del paciente requeridos'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            # Try to find existing patient by phone or email
+            patient = None
+            phone = patient_data.get('phone')
+            email = patient_data.get('email')
+            
+            if phone:
+                patient = Patient.objects.filter(phone=phone).first()
+            if not patient and email:
+                patient = Patient.objects.filter(email=email).first()
+            
+            # Create new patient if not found
+            if not patient:
+                patient = Patient.objects.create(
+                    first_name=patient_data.get('first_name', ''),
+                    last_name=patient_data.get('last_name', ''),
+                    phone=phone or '',
+                    email=email or '',
+                )
+            
+            # Create appointment
+            appointment_data = {
+                'patient': patient.id,
+                'consultation_type': request.data.get('consultation_type'),
+                'date': request.data.get('date'),
+                'start_time': request.data.get('start_time'),
+                'end_time': request.data.get('end_time'),
+                'notes': request.data.get('notes', ''),
+            }
+            
+            serializer = self.get_serializer(data=appointment_data)
             serializer.is_valid(raise_exception=True)
             serializer.save(public_booking=True, created_by='public')
             
