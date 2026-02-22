@@ -1,33 +1,12 @@
-import { MapPin, Star, ArrowRight, LogIn, Phone } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { MapPin, Star, ArrowRight, LogIn } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
 import Link from 'next/link';
 
-/* ─────────────────────────── static data ─────────────────────────── */
+const ClinicMap = dynamic(() => import('@/app/components/clinic-map'), { ssr: false });
 
-const clinicsWithMap = [
-  {
-    value: 'monterrey',
-    label: 'Clínica Monterrey',
-    address: 'Monterrey, Nuevo León',
-    phone: '81 8000 0001',
-    mapSrc: 'https://www.openstreetmap.org/export/embed.html?bbox=-100.3461%2C25.6666%2C-100.2761%2C25.6966&layer=mapnik&marker=25.6816%2C-100.3111',
-  },
-  {
-    value: 'cdmx',
-    label: 'Clínica CDMX',
-    address: 'Ciudad de México, CDMX',
-    phone: '55 5000 0002',
-    mapSrc: 'https://www.openstreetmap.org/export/embed.html?bbox=-99.1632%2C19.4126%2C-99.0932%2C19.4526&layer=mapnik&marker=19.4326%2C-99.1332',
-  },
-  {
-    value: 'guadalajara',
-    label: 'Clínica Guadalajara',
-    address: 'Guadalajara, Jalisco',
-    phone: '33 3000 0003',
-    mapSrc: 'https://www.openstreetmap.org/export/embed.html?bbox=-103.3796%2C20.6397%2C-103.3096%2C20.6797&layer=mapnik&marker=20.6597%2C-103.3496',
-  },
-];
+/* ─────────────────────────── static data ─────────────────────────── */
 
 const dentistsByClinic: Record<string, { value: string; label: string; specialty: string; rating: number }[]> = {
   monterrey: [
@@ -44,11 +23,17 @@ const dentistsByClinic: Record<string, { value: string; label: string; specialty
   ],
 };
 
+const clinicLabels: Record<string, string> = {
+  monterrey: 'Clínica Monterrey',
+  cdmx: 'Clínica CDMX',
+  guadalajara: 'Clínica Guadalajara',
+};
+
 const allDentists = Object.entries(dentistsByClinic).flatMap(([clinic, dentists]) =>
   dentists.map((d) => ({
     ...d,
     clinic,
-    clinicLabel: clinicsWithMap.find((c) => c.value === clinic)?.label ?? clinic,
+    clinicLabel: clinicLabels[clinic] ?? clinic,
   }))
 );
 
@@ -96,41 +81,10 @@ export default function Home() {
       {/* ── Clinics Map ── */}
       <section className="container mx-auto px-4 py-8">
         <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">Nuestros consultorios</h2>
-        <p className="text-center text-muted-foreground text-sm mb-8">
+        <p className="text-center text-muted-foreground text-sm mb-6">
           Encuéntranos en las siguientes ubicaciones
         </p>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
-          {clinicsWithMap.map((clinic) => (
-            <Card key={clinic.value} className="overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-48 w-full">
-                <iframe
-                  src={clinic.mapSrc}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  title={`Mapa de ubicación de ${clinic.label}`}
-                />
-              </div>
-              <CardContent className="pt-4 pb-4 px-4 space-y-2">
-                <p className="font-semibold text-sm">🏥 {clinic.label}</p>
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5 shrink-0" />
-                  <span>{clinic.address}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Phone className="h-3.5 w-3.5 shrink-0" />
-                  <span>{clinic.phone}</span>
-                </div>
-                <Link href="/dashboard">
-                  <Button size="sm" className="w-full mt-1">
-                    Agendar cita
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <ClinicMap />
       </section>
 
       {/* ── Dentist Profiles Preview ── */}
