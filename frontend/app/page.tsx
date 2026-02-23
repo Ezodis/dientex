@@ -1,10 +1,8 @@
-import dynamic from 'next/dynamic';
 import { MapPin, Star, ArrowRight, LogIn } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
 import Link from 'next/link';
-
-const ClinicMap = dynamic(() => import('@/app/components/clinic-map'), { ssr: false });
+import ClinicMapClient from '@/app/components/clinic-map-client';
 
 /* ─────────────────────────── static data ─────────────────────────── */
 
@@ -84,7 +82,7 @@ export default function Home() {
         <p className="text-center text-muted-foreground text-sm mb-6">
           Encuéntranos en las siguientes ubicaciones
         </p>
-        <ClinicMap />
+        <ClinicMapClient />
       </section>
 
       {/* ── Dentist Profiles Preview ── */}
