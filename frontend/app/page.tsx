@@ -41,8 +41,11 @@ const allDentists = Object.entries(dentistsByClinic).flatMap(([clinic, dentists]
 
 /* ─────────────────────────── component ─────────────────────────── */
 
+const INITIAL_DENTIST_COUNT = 3;
+
 export default function Home() {
   const [search, setSearch] = useState('');
+  const [showAll, setShowAll] = useState(false);
   const mapSectionRef = useRef<HTMLElement>(null);
 
   const filteredDentists = allDentists.filter(
@@ -51,6 +54,9 @@ export default function Home() {
       d.specialty.toLowerCase().includes(search.toLowerCase()) ||
       d.clinicLabel.toLowerCase().includes(search.toLowerCase()),
   );
+
+  const visibleDentists = showAll ? filteredDentists : filteredDentists.slice(0, INITIAL_DENTIST_COUNT);
+  const hasMore = !showAll && filteredDentists.length > INITIAL_DENTIST_COUNT;
 
   function scrollToMap() {
     mapSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -108,7 +114,7 @@ export default function Home() {
               placeholder="Buscar dentista, especialidad…"
               aria-label="Buscar dentista por nombre, especialidad o clínica"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => { setSearch(e.target.value); setShowAll(false); }}
               className="pl-9"
             />
           </div>
@@ -119,7 +125,7 @@ export default function Home() {
                 Sin resultados para &ldquo;{search}&rdquo;
               </p>
             ) : (
-              filteredDentists.map((d) => (
+              visibleDentists.map((d) => (
                 <Card key={d.value} className="hover:shadow-md transition-shadow">
                   <CardContent className="pt-5 pb-4 px-4">
                     <div className="flex items-start gap-3">
@@ -149,6 +155,20 @@ export default function Home() {
               ))
             )}
           </div>
+
+          {/* ── Ver más ── */}
+          {hasMore && (
+            <div className="text-center mt-6">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowAll(true)}
+              >
+                Ver más
+                <ChevronDown className="h-4 w-4 ml-1" />
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* ── Click to see more ── */}
