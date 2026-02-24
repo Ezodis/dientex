@@ -76,15 +76,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* ── Clinics Map ── */}
-      <section className="container mx-auto px-4 py-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">Nuestros consultorios</h2>
-        <p className="text-center text-muted-foreground text-sm mb-6">
-          Encuéntranos en las siguientes ubicaciones
-        </p>
-        <ClinicMapClient />
-      </section>
-
       {/* ── Dentist Profiles Preview ── */}
       <section className="container mx-auto px-4 py-12">
         <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">Nuestros dentistas</h2>
@@ -121,30 +112,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Login / Account Section ── */}
-      <section className="container mx-auto px-4 py-12 text-center">
-        <div className="max-w-sm mx-auto space-y-4">
-          <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-            <LogIn className="h-7 w-7 text-blue-600" />
-          </div>
-          <h2 className="text-xl font-bold">Crea tu cuenta</h2>
-          <ul className="text-sm text-muted-foreground space-y-1 text-left list-none">
-            <li>✅ Guarda perfiles de pacientes (novia, mamá, amigos)</li>
-            <li>✅ Reservas más rápidas en el futuro</li>
-            <li>✅ Historial de citas siempre disponible</li>
-          </ul>
-          <div className="flex gap-3 justify-center">
-            <Link href="/dashboard">
-              <Button className="min-w-[110px]">Registrarme</Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button variant="outline" className="min-w-[110px]">
-                <LogIn className="h-4 w-4" />
-                Iniciar sesión
-              </Button>
-            </Link>
-          </div>
-        </div>
+      {/* ── Clinics Map ── */}
+      <section className="container mx-auto px-4 py-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">Nuestros consultorios</h2>
+        <p className="text-center text-muted-foreground text-sm mb-6">
+          Encuéntranos en las siguientes ubicaciones
+        </p>
+        <ClinicMapClient />
       </section>
 
       {/* ── Footer ── */}
