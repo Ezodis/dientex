@@ -83,7 +83,7 @@ export default function ClinicMap() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-3">
+    <div className="h-full max-w-4xl mx-auto flex flex-col gap-3 px-4 py-2">
 
       {/* ── Searchable dropdown ── */}
       <div className="relative" ref={dropdownRef}>
@@ -153,7 +153,7 @@ export default function ClinicMap() {
       </div>
 
       {/* ── Single map with all pins ── */}
-      <div className="rounded-xl overflow-hidden border shadow-md h-[460px]">
+      <div className="flex-1 min-h-0 rounded-xl overflow-hidden border shadow-md">
         {icon && (
           <MapContainer
             center={[23.6345, -102.5528]}
