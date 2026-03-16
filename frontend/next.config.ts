@@ -12,8 +12,8 @@ const nextConfig = {
     
     // Ensure URL has protocol
     const destination = apiUrl.startsWith('http') 
-      ? `${apiUrl}/:path*`
-      : `https://${apiUrl}/:path*`;
+      ? `${apiUrl}/api/:path*`
+      : `https://${apiUrl}/api/:path*`;
     
     console.log('API rewrite configured:', { source: '/api/:path*', destination });
     
