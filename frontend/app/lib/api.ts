@@ -162,6 +162,107 @@ class ApiClient {
   async getFinancialSummary(token?: string) {
     return this.request('/finance/summary/', { token })
   }
+
+  // Clinical - Medical Histories
+  async getMedicalHistories(patientId?: string | number, token?: string) {
+    const query = patientId ? `?patient=${patientId}` : ''
+    return this.request(`/clinical/medical-histories/${query}`, { token })
+  }
+
+  async getMedicalHistory(id: string | number, token?: string) {
+    return this.request(`/clinical/medical-histories/${id}/`, { token })
+  }
+
+  async createMedicalHistory(data: any, token?: string) {
+    return this.request('/clinical/medical-histories/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      token,
+    })
+  }
+
+  async updateMedicalHistory(id: string | number, data: any, token?: string) {
+    return this.request(`/clinical/medical-histories/${id}/`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      token,
+    })
+  }
+
+  // Clinical - Clinical Notes
+  async getClinicalNotes(patientId?: string | number, token?: string) {
+    const query = patientId ? `?patient=${patientId}` : ''
+    return this.request(`/clinical/clinical-notes/${query}`, { token })
+  }
+
+  async getClinicalNote(id: string | number, token?: string) {
+    return this.request(`/clinical/clinical-notes/${id}/`, { token })
+  }
+
+  async createClinicalNote(data: any, token?: string) {
+    return this.request('/clinical/clinical-notes/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      token,
+    })
+  }
+
+  async updateClinicalNote(id: string | number, data: any, token?: string) {
+    return this.request(`/clinical/clinical-notes/${id}/`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      token,
+    })
+  }
+
+  async deleteClinicalNote(id: string | number, token?: string) {
+    return this.request(`/clinical/clinical-notes/${id}/`, {
+      method: 'DELETE',
+      token,
+    })
+  }
+
+  // Clinical - Clinical Files
+  async getClinicalFiles(patientId?: string | number, token?: string) {
+    const query = patientId ? `?patient=${patientId}` : ''
+    return this.request(`/clinical/clinical-files/${query}`, { token })
+  }
+
+  // Clinical - Odontograms
+  async getOdontograms(patientId?: string | number, token?: string) {
+    const query = patientId ? `?patient=${patientId}` : ''
+    return this.request(`/clinical/odontograms/${query}`, { token })
+  }
+
+  async getOdontogram(id: string | number, token?: string) {
+    return this.request(`/clinical/odontograms/${id}/`, { token })
+  }
+
+  async createOdontogram(data: any, token?: string) {
+    return this.request('/clinical/odontograms/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      token,
+    })
+  }
+
+  async updateOdontogram(id: string | number, data: any, token?: string) {
+    return this.request(`/clinical/odontograms/${id}/`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      token,
+    })
+  }
+
+  // Clinical - Periodontograms
+  async getPeriodontograms(patientId?: string | number, token?: string) {
+    const query = patientId ? `?patient=${patientId}` : ''
+    return this.request(`/clinical/periodontograms/${query}`, { token })
+  }
+
+  async getPeriodontogram(id: string | number, token?: string) {
+    return this.request(`/clinical/periodontograms/${id}/`, { token })
+  }
 }
 
 export const apiClient = new ApiClient(API_BASE_URL)

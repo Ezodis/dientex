@@ -13,6 +13,7 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
+  Stethoscope,
 } from "lucide-react"
 import { Button } from "@/app/components/ui/button"
 import { Separator } from "@/app/components/ui/separator"
@@ -22,6 +23,7 @@ const navigation = [
   { name: "Pacientes", href: "/patients", icon: Users },
   { name: "Citas", href: "/appointments", icon: Calendar },
   { name: "Tratamientos", href: "/treatments", icon: FileText },
+  { name: "Clínico", href: "/clinical", icon: Stethoscope },
   { name: "Finanzas", href: "/finance", icon: DollarSign },
   { name: "Configuración", href: "/settings", icon: Settings },
 ]
