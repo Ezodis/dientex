@@ -160,7 +160,7 @@ class ApiClient {
 
   // Finance
   async getFinancialSummary(token?: string) {
-    return this.request('/finance/summary/', { token })
+    return this.request('/finances/payments/summary/', { token })
   }
 
   // Clinical - Medical Histories

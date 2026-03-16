@@ -144,8 +144,8 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
     environment:
       NEXT_PUBLIC_API_URL: "http://backend:8000"
     volumes:
