@@ -1,4 +1,12 @@
-const API_BASE_URL = '/api'
+// Use NEXT_PUBLIC_API_URL directly when available (direct browser→backend requests).
+// Falls back to '/api' for local development without the env var (relies on Next.js rewrite).
+const API_BASE_URL = (() => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+  if (!apiUrl) return '/api'
+  // Strip trailing slashes; if URL already ends with /api, use as-is, else append it
+  const base = apiUrl.replace(/\/+$/, '')
+  return base.endsWith('/api') ? base : `${base}/api`
+})()
 
 interface RequestOptions extends RequestInit {
   token?: string
