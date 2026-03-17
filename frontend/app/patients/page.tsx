@@ -12,7 +12,7 @@ import apiClient from "@/app/lib/api"
 
 interface Patient {
   id: string | number
-  name: string
+  full_name: string
   email: string
   phone: string
 }
@@ -40,13 +40,13 @@ export default function PatientsPage() {
   }, [])
 
   const filteredPatients = patients.filter((patient) =>
-    patient.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    patient.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     patient.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     patient.phone?.includes(searchTerm)
   )
 
   const columns = [
-    { key: "name", header: "Nombre" },
+    { key: "full_name", header: "Nombre" },
     { key: "email", header: "Email" },
     { key: "phone", header: "Teléfono" },
     { 
