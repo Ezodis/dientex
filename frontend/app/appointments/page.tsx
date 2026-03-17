@@ -13,7 +13,7 @@ interface Appointment {
   id: string | number
   patient_name: string
   date: string
-  time: string
+  start_time: string
   treatment_type: string
   status: "scheduled" | "confirmed" | "completed" | "cancelled"
 }
@@ -116,7 +116,7 @@ export default function AppointmentsPage() {
                       id: String(appointment.id),
                       patientName: appointment.patient_name || "Sin nombre",
                       date: appointment.date || "",
-                      time: appointment.time || "",
+                      time: appointment.start_time || "",
                       type: appointment.treatment_type || "Consulta general",
                       status: appointment.status || "scheduled",
                     }} 

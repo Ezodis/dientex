@@ -2,6 +2,7 @@ from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from django.utils import timezone
 from .models import Patient
 from .serializers import PatientSerializer, PatientListSerializer
 
@@ -82,6 +83,3 @@ class PatientViewSet(viewsets.ModelViewSet):
                 'total_debt': total_debt,
             }
         })
-
-
-from django.utils import timezone

@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'import_export',
+    'django_filters',
     'django_celery_beat',
     'django_celery_results',
     'django.contrib.admin',
@@ -474,12 +475,9 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': REDIS_URL,
         'OPTIONS': {
-            'parser_class': 'redis.connection.HiredisParser',
             'pool_class': 'redis.BlockingConnectionPool',
-            'pool_class_kwargs': {
-                'max_connections': 50,
-                'timeout': 20,
-            },
+            'max_connections': 50,
+            'timeout': 20,
         },
         'KEY_PREFIX': 'dientex',
         'TIMEOUT': 300,  # 5 minutes default
